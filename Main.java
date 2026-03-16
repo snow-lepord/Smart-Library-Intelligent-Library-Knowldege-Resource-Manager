@@ -12,7 +12,7 @@ public class Main {
 
         int option;
 
-        System.out.println("===== SMART LIBRARY SYSTEM =====");
+        System.out.println("==== SMART LIBRARY SYSTEM ====");
 
         do {
 
