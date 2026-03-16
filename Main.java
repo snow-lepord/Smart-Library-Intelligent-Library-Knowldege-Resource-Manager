@@ -1,4 +1,5 @@
 package SmartLibb;
+
 import java.util.Scanner;
 
 public class Main {
@@ -6,69 +7,74 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
-        Library lib = new Library();
 
-        int choice;
+        AuthSystem auth = new AuthSystem();
+
+        int option;
+
+        System.out.println("===== SMART LIBRARY SYSTEM =====");
 
         do {
 
-            System.out.println("\n=== SMART LIBRARY SYSTEM ===");
-            System.out.println("1 Add Book");
-            System.out.println("2 Display Books");
-            System.out.println("3 Delete Book");
-            System.out.println("4 Add User");
-            System.out.println("5 Issue Book");
-            System.out.println("6 Return Book");
-            System.out.println("7 User History");
-            System.out.println("8 Total Books");
-            System.out.println("9 Exit");
+            System.out.println("\n1 Create Account");
+            System.out.println("2 Login");
+            System.out.print("Enter choice: ");
 
-            System.out.print("Enter Choice: ");
-            choice = sc.nextInt();
+            option = sc.nextInt();
+            sc.nextLine();
 
-            switch (choice) {
+            switch(option) {
 
                 case 1:
-                    lib.addBook();
+                    auth.createAccount();
                     break;
 
                 case 2:
-                    lib.displayBooks();
-                    break;
+                    if(auth.login()) {
 
-                case 3:
-                    lib.deleteBook();
-                    break;
+                        Library lib = new Library();
+                        int choice;
 
-                case 4:
-                    lib.addUser();
-                    break;
+                        do {
 
-                case 5:
-                    lib.issueBook();
-                    break;
+                            System.out.println("\n===== LIBRARY MENU =====");
+                            System.out.println("1 Add Book");
+                            System.out.println("2 Display Books");
+                            System.out.println("3 Delete Book");
+                            System.out.println("4 Add User");
+                            System.out.println("5 Issue Book");
+                            System.out.println("6 Return Book");
+                            System.out.println("7 User History");
+                            System.out.println("8 Exit");
 
-                case 6:
-                    lib.returnBook();
-                    break;
+                            System.out.print("Enter Choice: ");
+                            choice = sc.nextInt();
 
-                case 7:
-                    lib.userHistory();
-                    break;
+                            switch(choice) {
 
-                case 8:
-                    System.out.println("Total Books: " + lib.bookCount);
-                    break;
+                                case 1: lib.addBook(); break;
+                                case 2: lib.displayBooks(); break;
+                                case 3: lib.deleteBook(); break;
+                                case 4: lib.addUser(); break;
+                                case 5: lib.issueBook(); break;
+                                case 6: lib.returnBook(); break;
+                                case 7: lib.userHistory(); break;
+                                case 8: System.out.println("Exiting"); break;
 
-                case 9:
-                    System.out.println("Exiting...");
+                                default:
+                                    System.out.println("Invalid choice");
+                            }
+
+                        } while(choice != 8);
+
+                    }
                     break;
 
                 default:
-                    System.out.println("Invalid Choice");
+                    System.out.println("Invalid option");
+
             }
 
-        } while (choice != 9);
-        sc.close();
+        } while(option != 2);
     }
 }
